@@ -16,7 +16,7 @@ This transforms the string in clipboard, such as this:
 into this:
 ```
 left: 138px;
-  top: 110px;
-  width: 149px;
-  height: 79px;
+top: 110px;
+width: 149px;
+height: 79px;
 ```
