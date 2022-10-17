@@ -12,12 +12,12 @@ def clear():
 
 while (True):
     clipboard=pc.waitForNewPaste(timeout=None)
-    regex = re.search("(?:(border-radius:\s*\d+px;)[\s\S]*)?(left:\s*-?\d+px;\s*top:\s*-?\d+px;\s*width:\s*\d+px;\s*height:\s*\d+px;)\s*", clipboard)
+    regex = re.search("^\.[^{}.]*{[^{}]*(?:(border-radius:\s*\d+px;)[^{}]*)?(left:\s*-?\d+px;\s*top:\s*-?\d+px;\s*width:\s*\d+px;\s*height:\s*\d+px;)\s*[^{}]*}$", clipboard)
     if regex:
         if(regex.group(1)):
             clipboard = '\n'.join(regex.groups())
         else:
-            clipboard = regex.group()
+            clipboard = regex.group(2)
         clipboard = '\n'.join(' '.join(line.split()) for line in clipboard.split('\n')).strip()
         pc.copy(clipboard)
     clear()
